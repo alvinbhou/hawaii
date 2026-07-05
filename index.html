@@ -490,7 +490,12 @@ window.addEventListener("scroll", ()=>{ window.requestAnimationFrame(spy); }, {p
 
 const initialDays = render();
 window.addEventListener("load", ()=>{
-  setTimeout(()=>{ scrollToDay(currentDay(initialDays).d); spy(); }, 250);
+  const tripStarted = todayMidnight().getTime() >= new Date(2026,6,12).getTime();
+  if(tripStarted){
+    setTimeout(()=>{ scrollToDay(currentDay(initialDays).d); spy(); }, 250);
+  } else {
+    spy();
+  }
 });
 </script>
 </body>

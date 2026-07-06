@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Alvin &amp; Janice · Wedding &amp; Hawaii Trip 2026</title>
 <meta name="theme-color" content="#f3f1ec">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏝️</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -48,7 +48,8 @@
     background:color-mix(in srgb,var(--cream) 90%,transparent);
     backdrop-filter:saturate(1.2) blur(14px);-webkit-backdrop-filter:saturate(1.2) blur(14px);border-bottom:1px solid var(--line-soft);
     padding:8px max(12px,env(safe-area-inset-left)) 8px max(8px,env(safe-area-inset-right))}
-  .brand{display:flex;align-items:baseline;gap:9px;flex:none;white-space:nowrap}
+  .brand{display:flex;align-items:baseline;gap:9px;flex:none;white-space:nowrap;
+    background:none;border:0;padding:0;margin:0;cursor:pointer;color:inherit;font:inherit;-webkit-tap-highlight-color:transparent}
   .brand .mono{font-family:var(--serif);font-weight:600;letter-spacing:.4px;font-size:16px;white-space:nowrap}
   .brand .mono .amp{color:var(--gold);padding:0 2px;font-style:italic}
 
@@ -118,7 +119,6 @@
   .ev.activity .chip{background:color-mix(in srgb,var(--gold) 24%,#fff)}
   .ev .body{flex:1;min-width:0}
   .ev .etitle{font-weight:600;font-size:15.5px;line-height:1.3;color:var(--ink)}
-  .ev .etitle .at{color:var(--gold-deep);font-weight:700;font-variant-numeric:tabular-nums}
   .ev .edesc{color:var(--soft);font-size:13.5px;margin-top:3px;line-height:1.5}
 
   .times{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
@@ -154,9 +154,9 @@
 <body>
 
 <header class="appbar">
-  <div class="brand">
+  <button class="brand" id="brandBtn" type="button" aria-label="Scroll to top">
     <span class="mono">Alvin <span class="amp">&amp;</span> Janice</span>
-  </div>
+  </button>
   <nav class="daynav" id="daynav" aria-label="Jump to day"></nav>
 </header>
 
@@ -203,8 +203,9 @@ const DAYS = [
       map:"https://maps.app.goo.gl/papxr6a7Wu91mBpc8", booking:"Citi Travel · Janice" },
   ]},
   { seg:0, d:"13", m:"Jul", dow:"Monday", name:"Muir Woods + Sausalito day trip", loc:"Bay Area", flag:"🌲", events:[
+    { type:"activity", icon:"🌲", title:"Muir Woods + Sausalito 一日遊", desc:"Janice 爸媽 day trip",
+      times:[{l:"Starts",v:"8:30 AM"}], groups:["jf"] },
     { type:"flight", title:"Alvin's parents land at SFO", desc:"BR18 · Alvin 爸媽 arrive", times:[{l:"Arrives",v:"4:35 PM",arr:true}], groups:["af"] },
-    { type:"activity", icon:"🌲", title:"Muir Woods + Sausalito 一日遊", desc:"Janice 爸媽 day trip", groups:["jf"] },
     { type:"hotel", title:"Sunnyvale AC Hotel", desc:"Janice 爸媽", groups:["jf"],
       map:"https://maps.app.goo.gl/papxr6a7Wu91mBpc8", booking:"Citi Travel · Janice" },
     { type:"hotel", title:"Hampton Inn & Suites Sunnyvale", desc:"Alvin 爸媽", groups:["af"],
@@ -217,17 +218,18 @@ const DAYS = [
       map:"https://maps.app.goo.gl/5tvCrFQQxpgymBRj9", booking:"Hilton · Janice" },
   ]},
   { seg:0, d:"15", m:"Jul", dow:"Wednesday", name:"Wedding Day 💍", loc:"San Francisco", flag:"💒", events:[
-    { type:"wedding", at:"9:00 AM", title:"Hair & makeup", desc:"SF 化妝師工作室", groups:["aj"] },
-    { type:"wedding", at:"1:00 PM", title:"Marriage license", desc:"SF City Hall", groups:["aj"] },
-    { type:"wedding", at:"3:00 PM", title:"Wedding ceremony", desc:"SF City Hall — everyone joins 🎉", groups:["all"] },
-    { type:"meal", at:"5:30 PM", title:"Wedding dinner", desc:"The Progress, SF", groups:["all"] },
+    { type:"wedding", title:"Hair & makeup", desc:"SF 化妝師工作室", times:[{l:"Starts",v:"9:00 AM"}], groups:["aj"] },
+    { type:"wedding", title:"Marriage license", desc:"SF City Hall", times:[{l:"Starts",v:"1:00 PM"}], groups:["aj"] },
+    { type:"wedding", title:"Wedding ceremony", desc:"SF City Hall — everyone joins 🎉", times:[{l:"Starts",v:"3:00 PM"}], groups:["all"] },
+    { type:"meal", title:"Wedding dinner", desc:"The Progress, SF", times:[{l:"Starts",v:"5:30 PM"}], groups:["all"] },
     { type:"hotel", title:"Sunnyvale AC Hotel", desc:"Janice 爸媽", groups:["jf"],
       map:"https://maps.app.goo.gl/papxr6a7Wu91mBpc8", booking:"Citi Travel · Janice" },
     { type:"hotel", title:"Hampton Inn & Suites Sunnyvale", desc:"Alvin 爸媽 · Leo & Cathy", groups:["af"],
       map:"https://maps.app.goo.gl/5tvCrFQQxpgymBRj9", booking:"Hilton · Janice & Alvin" },
   ]},
   { seg:0, d:"16", m:"Jul", dow:"Thursday", name:"休息日 · Rest day", loc:"Bay Area", flag:"😌", events:[
-    { type:"activity", icon:"🏸", at:"8:00 PM", title:"羽球 · Badminton with Esther", desc:"Bintang", groups:["aj"] },
+    { type:"activity", icon:"🏸", title:"羽球 · Badminton with Esther", desc:"Bintang",
+      times:[{l:"Starts",v:"8:00 PM"}], groups:["aj"] },
     { type:"hotel", title:"Sunnyvale AC Hotel", desc:"Janice 爸媽", groups:["jf"],
       map:"https://maps.app.goo.gl/papxr6a7Wu91mBpc8", booking:"Citi Travel · Janice" },
     { type:"hotel", title:"Hampton Inn & Suites Sunnyvale", desc:"Alvin 爸媽", groups:["af"],
@@ -243,10 +245,14 @@ const DAYS = [
   ]},
   { seg:1, d:"18", m:"Jul", dow:"Saturday", name:"Shangri La & Diamond Head", loc:"Oʻahu", flag:"🌺", events:[
     { type:"activity", icon:"🏛️", title:"Shangri La Tour",
-      desc:"Check in at Bishop Museum (Saturday location), then shuttle to Shangri La. Arrive 10 min early — the shuttle is the only way in and missed shuttles aren't refunded. ~2 hours total.",
-      times:[{l:"Tour",v:"11:00 AM"}], map:"https://maps.app.goo.gl/SaBzLR6TMHhcmCtL7", groups:["all"] },
+      desc:"Check in at Bishop Museum, 1525 Bernice Street (Saturday location), then shuttle to Shangri La. Arrive 10 min early — the shuttle is the only way in and missed shuttles aren't refunded. ~2 hours total.",
+      times:[{l:"Tour",v:"11:00 AM"}], map:"https://maps.app.goo.gl/eWVqdt2PFhykna9i9", groups:["all"] },
     { type:"activity", icon:"⛰️", title:"Diamond Head hike", desc:"下午 · Afternoon", groups:["all"] },
     { type:"activity", icon:"🚢", title:"珍珠港 · Pearl Harbor", groups:["all"] },
+    { type:"meal", title:"Tane Vegan Izakaya - Honolulu",
+      desc:"Table for 7 · Janice Shih · 2065 S Beretania St, Honolulu, HI 96826 · (808) 888-7678",
+      times:[{l:"Reservation",v:"6:00 PM"}], groups:["all"],
+      map:"https://www.google.com/maps/search/?api=1&query=2065+S+Beretania+St+Honolulu+HI+96826", booking:"Confirmation #3629" },
     { type:"hotel", title:"Hyatt Regency Waikiki Beach Resort & Spa", desc:"Everyone · Waikiki", groups:["all"],
       map:"https://www.google.com/maps/search/?api=1&query=Hyatt+Regency+Waikiki+Beach+Resort", booking:"Chase Travel" },
   ]},
@@ -351,14 +357,13 @@ function mapHTML(url){
 const REDUNDANT_DESC = new Set(["Alvin 爸媽", "Janice 爸媽"]);
 function rowHTML(ev, view, forceDesc){
   const icon = ev.icon || TYPE_ICON[ev.type] || "•";
-  const at = ev.at ? `<span class="at">${ev.at}</span> · ` : "";
   const showDesc = ev.desc && (forceDesc || !(view!=="admin" && REDUNDANT_DESC.has(ev.desc)));
   const desc = showDesc ? `<div class="edesc">${ev.desc}</div>` : "";
   const booking = (view==="admin" && ev.booking) ? `<div class="booking">🎟️ ${ev.booking}</div>` : "";
   return `<div class="ev ${ev.type}">
     <div class="chip">${icon}</div>
     <div class="body">
-      <div class="etitle">${at}${ev.title}</div>
+      <div class="etitle">${ev.title}</div>
       ${desc}
       ${timesHTML(ev.times)}
       ${mapHTML(ev.map)}
@@ -370,9 +375,8 @@ function rowHTML(ev, view, forceDesc){
 function dayHTML(day, view){
   const items  = day.events.filter(e => e.type !== "hotel");
   const hotels = day.events.filter(e => e.type === "hotel");
-  let primary = hotels.filter(h => isOwnStay(view, h.groups));
-  let others  = hotels.filter(h => !isOwnStay(view, h.groups));
-  if(primary.length === 0){ primary = hotels; others = []; }
+  const primary = hotels.filter(h => isOwnStay(view, h.groups) || h.force);
+  const others  = hotels.filter(h => !(isOwnStay(view, h.groups) || h.force));
 
   let body = items.map(e => rowHTML(e, view)).join("");
   body += primary.map(h => rowHTML(h, view, h.force)).join("");
@@ -486,6 +490,7 @@ function setView(v){
 }
 
 document.querySelectorAll("#viewdots .vdot").forEach(b=> b.addEventListener("click", ()=>setView(b.dataset.v)));
+document.getElementById("brandBtn").addEventListener("click", ()=> window.scrollTo({top:0, behavior:"smooth"}));
 window.addEventListener("scroll", ()=>{ window.requestAnimationFrame(spy); }, {passive:true});
 
 const initialDays = render();
